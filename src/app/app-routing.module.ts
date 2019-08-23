@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {GithubComponent} from './github/github.component';
 import { Routes, RouterModule } from '@angular/router';
 
 

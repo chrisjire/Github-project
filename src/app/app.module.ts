@@ -13,7 +13,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
     AppComponent,
     GithubComponent,
     NavComponent,
-    SearchFormComponent
+    SearchFormComponent,
   ],
   imports: [
     BrowserModule,

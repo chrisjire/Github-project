@@ -1,4 +1,12 @@
 <div>
-    <app-search-form></app-search-form>
-
+    <app-search-form (emitSearch)="searchGithub($event)"></app-search-form>
+    <div *ngIf="githubs">
+        <div class="card-columns">
+            <div *ngFor="let github of githubs">
+                <div class="card">
+                    <img src="{{github.url}}" class="card">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

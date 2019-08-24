@@ -15,7 +15,7 @@ export class GithubComponent implements OnInit {
   constructor(public githubRequestService:GithubRequestService) { }
 
   ngOnInit() {
-    this.searchGithub("lion king");
+    this.searchGithub("searchTerm");
   }
 
   searchGithub(searchTerm){

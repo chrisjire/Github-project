@@ -1,38 +1,80 @@
 import { Injectable } from '@angular/core';
+import { User } from '../user';
+import { Repo } from '../repo';
 import {HttpClient} from'@angular/common/http';
 import {environment} from '../../environments/environment';
-import {Github} from '../github';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class GithubRequestService {
 
-  githubs:Github[]=[];
-  constructor(private http:HttpClient) { }
+  user: User;
+  repo: Repo;
+  private userName: string;
 
-  searchGithubs(searchTerm:string){
-    
-    let searchEndpoint= "https://api.github.com"+environment.apiKey;
-    searchEndpoint += "&q="+searchTerm;
-    let promise =  new Promise((resolve, reject)=>{
-        this.http.get(searchEndpoint).toPromise().then(
-          (results)=>{
-            this.githubs=[];
-            for(let i=0; i<results["data"].length; i++){
-              let url = results["data"][i]["images"]["fixed_height"]["url"];
-              let gith = new Github(url);
-              this.githubs.push(gith);
-            }
-            console.log(this.githubs);
-            resolve()
-          },
-          (error)=>{
-            console.log(error)
-            reject()
-          }
-        )
-    })
+  apiKey: string = environment.apiKey;
+  baserUrl: string = environment.baseUrl;
+  constructor(private http: HttpClient) {
+    this.user = new User ('', '', '', '', 0, 0, 0);
+    this.repo = new Repo('', '', '');
+    this.userName = 'chrisjire';
+  }
+
+  getUser() {
+
+    interface ApiResponse {
+      login: string;
+      avatar_url: string;
+      html_url: string;
+      name: string;
+      public_repos: number;
+      followers: number;
+      following: number;
+    }
+    const promise = new Promise(((resolve, reject) => {
+      this.http.get<ApiResponse>('https://api.github.com/users/' + this.userName + '?access_token=' + this.apiKey )
+      .toPromise()
+      .then(res => {
+          this.user.login = res.login;
+          this.user.avatar_url = res.avatar_url;
+          this.user.html_url = res.html_url;
+          this.user.name = res.name;
+          this.user.followers = res.followers;
+          this.user.following = res.following;
+          this.user.public_repos = res.public_repos;
+        },
+        error => {
+
+      reject(error);
+    });
+    }));
     return promise;
+  }
+
+  getRepos(username) {
+
+    interface ApiResponse {
+      name: string;
+      html_url: string;
+      description: string;
+    }
+
+    const promise = new Promise(((resolve, reject) => {
+      this.http.get<ApiResponse>('https://api.github.com/users/' + this.userName + '/repos?access_token=' + this.apiKey )
+        .toPromise()
+        .then(res => {
+          this.repo = res;
+    }, error => {
+
+      reject(error);
+    });
+  }));
+    return promise;
+  }
+
+  getUsername(username: string) {
+    this.userName = username;
   }
 }

@@ -1,11 +1,38 @@
-<div style="margin: 150px">
-    <div class="card">
-        <div class="card-body">
-            <form class="form-inline">
-                <input type="text" class="form-control mr-10" style="width: 1000px" placeholder="Search" name="searchTerm" [(ngModel)]="searchTerm">
-                <button type="submit" class="btn btn-dark" style="margin-left: 20px" (click)="search()">Search</button>
-            </form>
+<div class="search-class">
+    <p id='users' (click)="searchUsers = true">Users</p>
+    <p id='repos' (click)="searchUsers = false">Repos</p>
+</div>
+
+    <form>
+    <input type="text" placeholder="Enter Username" [(ngModel)]="username" name="username" (keyup)="getProfile()">
+    </form>
+
+    <div *ngIf="searchUsers" class="main-card">
+    <div class="avi-panel to-left">
+        <img src="{{user.avatar_url}}" alt="avatar">
+        <a href="{{user.html_url}}" target="_blank"><button>Go to Profile </button></a>
+    </div>
+    <div class="details to-right">
+        <h3>{{user.name}}</h3>
+        <p>Followers<br><span>{{user.followers}}</span></p>
+        <p>Following<br><span>{{user.following}}</span></p>
+        <p>Repositories<br><span>{{user.public_repos}}</span></p>
+    </div>
+
+    </div>
+
+    <div *ngIf="!searchUsers">
+    <div class="container repo-row">
+        <div *ngFor="let rep of repo" class="some-card">
+        <a href="{{rep.html_url}}" target="_blank">
+            <h3>{{rep.name}}</h3>
+            <p>{{rep.description}}</p>
+        </a>
+        
         </div>
+        
     </div>
 </div>
 
+
+    

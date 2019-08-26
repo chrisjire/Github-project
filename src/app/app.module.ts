@@ -9,6 +9,7 @@ import { GithubComponent } from './github/github.component';
 import { NavComponent } from './nav/nav.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { GithubRequestService } from './github-http/github-request.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [GithubRequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

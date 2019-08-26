@@ -10,23 +10,13 @@ import { GithubRequestService } from '../github-http/github-request.service';
 })
 export class GithubComponent implements OnInit {
 
-  githubs: Github[];
+  
 
-  constructor(public githubRequestService:GithubRequestService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.searchGithub("searchTerm");
   }
 
-  searchGithub(searchTerm){
-  this.githubRequestService.searchGithubs(searchTerm).then(
-    ()=>{
-      this.githubs=this.githubRequestService.githubs;
-    },
-    (error)=>{
-      console.log(error)
-    }
-  )
-}
+  
 
 }

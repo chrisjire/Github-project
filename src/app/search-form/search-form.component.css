@@ -36,7 +36,7 @@ margin: 1% 2%;
     color: #C46D5E;
     font-weight: 600;
 }
-.search-class:hover::after {
+.search-class:hover {
         content: '';
         display: block;
         margin-top: 3px;

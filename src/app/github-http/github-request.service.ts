@@ -14,8 +14,8 @@ export class GithubRequestService {
   repo: Repo;
   private userName: string;
 
-  apiKey: string = environment.apiKey;
-  baserUrl: string = environment.baseUrl;
+  apiKey: string = "7a749e699fef6e1d9dc664360d234d310ad384e6";
+  baserUrl: string = 'https://api.github.com/users/';
   constructor(private http: HttpClient) {
     this.user = new User ('', '', '', '', 0, 0, 0);
     this.repo = new Repo('', '', '');

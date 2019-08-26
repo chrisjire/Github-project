@@ -10,6 +10,7 @@ import { NavComponent } from './nav/nav.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GithubRequestService } from './github-http/github-request.service';
+import { UserDirective } from './user.directive';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { GithubRequestService } from './github-http/github-request.service';
     NavComponent,
     SearchFormComponent,
     NotFoundComponent,
+    UserDirective,
   ],
   imports: [
     BrowserModule,

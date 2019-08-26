@@ -1,9 +1,10 @@
-<div class="search-class">
-    <p id='users' (click)="searchUsers = true">Users</p>
-    <p id='repos' (click)="searchUsers = false">Repos</p>
-</div>
+
 
     <form>
+            <div class="search-class">
+                    <p id='users' (click)="searchUsers = true">Users</p>
+                    <p id='repos' (click)="searchUsers = false">Repos</p>
+                </div>
     <input type="text" placeholder="Enter Username" [(ngModel)]="username" name="username" (keyup)="getProfile()">
     </form>
 
